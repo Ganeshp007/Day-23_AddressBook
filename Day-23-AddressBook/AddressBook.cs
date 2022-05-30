@@ -46,6 +46,8 @@ namespace Day_23_AddressBook
                 Console.Write("> Enter Email :- ");
                 obj.Email = Console.ReadLine();
 
+                // >> UC7 : To avoid duplicate contact entries in AddressBook //
+                //------------------------------------------------------------//
                 if (addContact.Count > 0)
                 {
                     foreach (var element in addContact)
