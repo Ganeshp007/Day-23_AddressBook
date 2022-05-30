@@ -46,7 +46,28 @@ namespace Day_23_AddressBook
                 Console.Write("> Enter Email :- ");
                 obj.Email = Console.ReadLine();
 
-                addContact.Add(obj); //Adding obj holding all info of current user we are adding it to List
+                if (addContact.Count > 0)
+                {
+                    foreach (var element in addContact)
+                    {
+                        if (element.FirstName.ToLower() != obj.FirstName.ToLower() || element.LastName.ToLower() != obj.LastName.ToLower())
+                        {
+                            addContact.Add(obj); //Adding obj holding all info of current user we are adding it to List
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nThis contact is already in Address Book....");
+                            Console.WriteLine("Enter the details again...");
+                            num++;
+                            count--;
+                        }
+                    }
+                }
+                else
+                {
+                    addContact.Add(obj); //Adding obj holding all info of current user we are adding it to List
+                }
                 num--;
                 count++;
             }
@@ -70,15 +91,23 @@ namespace Day_23_AddressBook
         }
         //Method to display Contacts in BOOk 
         public void DisplayBookData()
-        {
+        { 
             if (Book.Count > 0)
             {
+                int numOfBooks = 0;
+                Console.WriteLine("Books Present in Record :");
+                foreach(var Books in Book)
+                {
+                    numOfBooks++;
+                    Console.WriteLine(numOfBooks+". "+Books.Key);
+                }
                 Console.Write("\nEnter the Name of AddressBook of which you want to See the Details :- ");
                 string Bookname = Console.ReadLine();
                 foreach (var element in Book) //Iterating elements in Book
                 {
                     if (element.Key.Contains(Bookname)) // selecting only that elemet which contain BookName  That we have searching for
                     {
+                        Console.WriteLine("\nRecords in AddressBook " + Bookname);
                         foreach (var data in element.Value)
                             Console.WriteLine("\nFirstName:" + " = " + data.FirstName + "\n" + " " + "LastName:" + " = " + data.LastName + "\n" + "Address:" + " = " + data.Address + "\n" + "City:" + " = " + data.City + "\n " + "State:" + " = " + data.State + "\n" + "Zip:" + " = " + data.Zip + " \n" + "PhoneNumber:" + " = " + data.PhoneNumber + "\n" + "Email:" + " = " + data.Email + "\n");
                         break;
