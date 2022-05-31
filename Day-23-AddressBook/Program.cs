@@ -7,7 +7,7 @@ AddressBook contact = new AddressBook();  //creating obj of AddressBook class to
 bool check = true;
 while (check)
 {
-    Console.Write("\nChooce Operation : \n1.Create AddressBooks\n2.Display AddressBook Contact\n3.Add New Contact to AddressBook\n4.Update Contact\n5.Display Book\n7.Delete Contact\n8.Exit\nEnter your Choice :- ");
+    Console.Write("\nChooce Operation : \n1.Create AddressBooks\n2.Display AddressBook Contact\n3.Add New Contact to AddressBook\n4.Search Contact By CityName and StateName\n5.Delete Contact\n5.Exit\n>> Enter your Choice :- ");
     int option = Convert.ToInt32(Console.ReadLine());
     switch (option)
     {
@@ -30,7 +30,21 @@ while (check)
             contact.DisplayBookData();
             break;
 
-        case 8:
+        case 3:
+            Console.WriteLine("\n>> Add New Contact");
+            contact.AddNewContact();
+            break;
+
+        case 4:
+            Console.WriteLine("\n>> Search contact by CityName and State Name:");
+            contact.SearchContact_By_CityName_StateName();
+            break;
+        case 5:
+            Console.WriteLine("\n>> Delete AddressBook");
+            contact.DeleteAddressBook();
+            break;
+
+        case 6:
             check = false;
             break;
 
